@@ -2,9 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Homepage</title>
+    {% block title %}
+        <title>Homepage</title>
+    {% endblock %}
 </head>
 <body>
-
+    {% block page_title %}
+        <h1>Главная</h1>
+    {% endblock %}
+        <ul>
+            <li><a href="{% url 'index' %}">Меню</a></li>
+            <li><a href="{% url 'contacts' %}"> Контакты</a></li>
+        </ul>
+    {% block content %}
+        <a>Меню</a>
+    {% endblock %}
 </body>
 </html>
