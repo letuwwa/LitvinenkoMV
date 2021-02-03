@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
     <title>Contacts</title>
@@ -9,5 +10,7 @@
 {% endblock %}
 
 {% block content %}
-    <p>Информация</p>
+    <a>
+      <img src="{% static '/images/spit.jpg' %}" class="w-25" alt="photo">
+    </a>
 {% endblock %}
