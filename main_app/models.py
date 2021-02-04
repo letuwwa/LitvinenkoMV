@@ -1,6 +1,5 @@
 from django.db import models
 from datetime import datetime
-from django.urls import reverse
 
 
 class Feedback(models.Model):
