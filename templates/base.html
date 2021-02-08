@@ -6,6 +6,9 @@
     h1 {
         background-color: lightgrey;
     }
+    h2 {
+        background-color: lightgrey;
+    }
 </style>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="{%  static  'css/style.css'  %}">
@@ -14,22 +17,25 @@
     {% endblock %}
 </head>
 <body>
-
     <div id="menu">
-
-    {% block page_title %}
-        <h1>Главная</h1>
-    {% endblock %}
-        <ul>
-            <li><a href="{% url 'index' %}">Меню</a></li>
-            <li><a href="{% url 'contacts' %}"> Контакты</a></li>
-            <li><a href="{% url 'login' %}"> Вход</a></li>
-        </ul>
-    {% block content %}
-        <a>Меню</a>
-    {% endblock %}
-
+        <h1>JOBS!</h1>
+        <nav>
+            <a href="{% url 'index' %}">Меню</a>
+            <a href="{% url 'contacts' %}"> Контакты</a>
+            {% if request.user.is_authenticated %}
+                <a href="{% url "logout" %}">Выйти из аккаунта</a>
+            {% else %}
+                <a href="{% url "login" %}">Войти в аккаунт</a>
+            {% endif %}
+        </nav>
+        {% block page_title %}
+            <h2>Главная</h2>
+        {% endblock %}
+        {% block content %}
+            {% if request.user.is_authenticated %}
+                <p>Привет, {{ request.user.first_name }}</p>
+            {% endif %}
+        {% endblock %}
     </div>
-
 </body>
 </html>
