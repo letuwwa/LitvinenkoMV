@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+
+{% block title %}
+    <title>User Page</title>
+{% endblock %}
+
+{% block page_title %}
+    <h2>Страница пользователя</h2>
+{% endblock %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <p>Привет, {{ request.user.first_name }}</p>
+    {% endif %}
+{% endblock %}

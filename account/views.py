@@ -5,6 +5,6 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 
 
-# @login_required
-# def index(request):
-#     return render(request, 'base.html', {'section': 'index'})
+@login_required
+def user_page(request):
+    return render(request, 'account/user_page.html', {'section': 'user_page'})
