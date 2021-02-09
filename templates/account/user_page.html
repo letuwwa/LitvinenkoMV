@@ -13,5 +13,6 @@
 {% block content %}
     {% if request.user.is_authenticated %}
         <p>Привет, {{ request.user.first_name }}</p>
+        <a href="{% url 'password_change' %}">Изменить пароль</a>
     {% endif %}
 {% endblock %}
