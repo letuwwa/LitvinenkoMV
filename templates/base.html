@@ -26,6 +26,7 @@
                 <a href="{% url "user_page" %}">Страница пользователя</a> |
                 <a href="{% url "logout" %}">Выйти из аккаунта</a>
             {% else %}
+                <a href="{% url "register" %}">Создать аккаунт</a> |
                 <a href="{% url "login" %}">Войти в аккаунт</a>
             {% endif %}
         </nav>
