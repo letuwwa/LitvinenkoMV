@@ -18,18 +18,20 @@
       <img style="border: double" src="{% static '/images/spit.jpg' %}" class="w-25" alt="photo">
     </a>
     <h3>Контактные данные:</h3>
-    <p>Телефон: +375441915594 </p>
-    <a>Почта: letuwwa@gmail.com</a>
-    <h3>Обратная связь: </h3>
-    <div class="col-lg-12">
-    <form id="item_form" method="post"
-          enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form|crispy }}
-      <p>
-        <button type="submit">Сохранить</button>
-      </p>
-    </form>
+        Телефон: +375441915594 <br>
+        Почта: letuwwa@gmail.com
+    <div style="margin-top: 10px">
+        <h3>Обратная связь: </h3>
+        <div class="col-lg-12">
+            <form id="item_form" method="post"
+                  enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <p>
+                <button type="submit">Сохранить</button>
+              </p>
+        </form>
+        </div>
   </div>
 
 {% endblock %}
