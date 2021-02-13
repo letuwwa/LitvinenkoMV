@@ -3,6 +3,9 @@
 {% load static %}
 
 {% block title %}
+    <style>
+        input {max-width: 12em}
+    </style>
     <title>Contacts</title>
 {% endblock %}
 
@@ -12,7 +15,7 @@
 
 {% block content %}
     <a>
-      <img src="{% static '/images/spit.jpg' %}" class="w-25" alt="photo">
+      <img style="border: double" src="{% static '/images/spit.jpg' %}" class="w-25" alt="photo">
     </a>
     <h3>Контактные данные:</h3>
     <p>Телефон: +375441915594 </p>
