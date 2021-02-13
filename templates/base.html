@@ -32,19 +32,19 @@
         <div style="display: flex; justify-content: space-around">
             <div>
                 <nav>
-                    <a class="btn btn-primary" href="{% url 'index' %}" role="button">Меню</a> |
-                    <a class="btn btn-primary" href="{% url 'contacts' %}"> Контакты</a>
+                    <a class="btn btn-primary" style="width: 250px" href="{% url 'index' %}" role="button">Меню</a> |
+                    <a class="btn btn-primary" style="width: 250px" href="{% url 'contacts' %}"> Контакты</a>
 
                 </nav>
             </div>
             <div>
                 <nav>
                     {% if request.user.is_authenticated %}
-                        <a class="btn btn-primary" href="{% url "user_page" %}" role="button">Страница пользователя</a> |
-                        <a class="btn btn-primary" href="{% url "logout" %}" role="button">Выйти из аккаунта</a>
+                        <a class="btn btn-primary" style="width: 250px" href="{% url "user_page" %}" role="button">Страница пользователя</a> |
+                        <a class="btn btn-primary" style="width: 250px" href="{% url "logout" %}" role="button">Выйти из аккаунта</a>
                     {% else %}
-                        <a class="btn btn-primary" href="{% url "register" %}" role="button">Создать аккаунт</a> |
-                        <a class="btn btn-primary" href="{% url "login" %}" role="button">Войти в аккаунт</a>
+                        <a class="btn btn-primary" style="width: 250px" href="{% url "register" %}" role="button">Создать аккаунт</a> |
+                        <a class="btn btn-primary" style="width: 250px" href="{% url "login" %}" role="button">Войти в аккаунт</a>
                     {% endif %}
                 </nav>
             </div>
