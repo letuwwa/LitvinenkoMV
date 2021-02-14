@@ -4,6 +4,7 @@
 {% block title %}
     <style>
         input {max-width: 24em}
+        select {max-width: 24em}
     </style>
     <title>Registration</title>
 {% endblock %}
@@ -16,6 +17,7 @@
     <p>Создайте аккаунт, используя форму ниже:</p>
     <form method="post">
         {{ user_form|crispy }}
+        {{ profile_form|crispy }}
         {% csrf_token %}
         <p><input type="submit" value="Создать аккаунт"></p>
     </form>

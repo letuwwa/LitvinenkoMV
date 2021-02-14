@@ -10,7 +10,13 @@
 
 {% block content %}
     {% if request.user.is_authenticated %}
-        <p>Привет, {{ request.user.first_name }}</p>
+        Привет, {{ request.user.first_name }} <br>
+        {% if request.user.profile.role == 'employer' %}
+            Вы зашли как тот, кто ищет сотрудников
+        {% elif request.user.profile.role == 'employee' %}
+            Вы зашли как тот, кто ищет работу
+        {% endif %}
+        <br>
         <a href="{% url 'password_change' %}">Изменить пароль</a> |
         <a href="{% url 'password_reset' %}">Восстановить пароль</a>
     {% endif %}
