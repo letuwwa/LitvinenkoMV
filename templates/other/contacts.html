@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block title %}
+    <style>
+        input {max-width: 12em}
+    </style>
+    <title>Contacts</title>
+{% endblock %}
+
+{% block page_title %}
+    <h2>Контакты</h2>
+{% endblock %}
+
+{% block content %}
+    <a>
+      <img style="border: double" src="{% static '/images/spit.jpg' %}" class="w-25" alt="photo">
+    </a>
+    <h3>Контактные данные:</h3>
+        Телефон: +375441915594 <br>
+        Почта: letuwwa@gmail.com
+    <div style="margin-top: 10px">
+        <h3>Обратная связь: </h3>
+        <div class="col-lg-12">
+            <form id="item_form" method="post"
+                  enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <p>
+                <button type="submit">Сохранить</button>
+              </p>
+        </form>
+        </div>
+  </div>
+
+{% endblock %}
