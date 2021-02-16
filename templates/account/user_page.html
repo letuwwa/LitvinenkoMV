@@ -13,6 +13,7 @@
         Привет, {{ request.user.first_name }} <br>
         {% if request.user.profile.role == 'employer' %}
             Вы зашли как тот, кто ищет сотрудников
+            <a class="btn btn-primary" style="width: 250px" href="{% url 'job_post' %}" role="button">Создать ваканисию</a>
         {% elif request.user.profile.role == 'employee' %}
             Вы зашли как тот, кто ищет работу
         {% endif %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Job</title>
+{% endblock %}
+
+{% block page_title %}
+    <h2>{{ q.title }}</h2>
+{% endblock %}
+
+{% block content %}
+    {{ q.title }}
+    {{ q.company_name }}
+    {{ q.published_on }}
+    {{ q.description }}
+    {{ q.salary }}
+{% endblock %}

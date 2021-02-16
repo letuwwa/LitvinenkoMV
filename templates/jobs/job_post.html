@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_filters %}
+
+{% block title %}
+    <title>Job Post</title>
+{% endblock %}
+
+{% block page_title %}
+    <h2>Создать новую вакансию</h2>
+{% endblock %}
+
+{% block content %}
+    <section class="site-section" id="next-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 mb-5 mb-lg-0">
+                    <form action="" method="POST" class="">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="row form-group">
+                            <div class="col-md-12">
+                                <input type="submit" value="Создать" class="btn btn-primary btn-md text-white">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
