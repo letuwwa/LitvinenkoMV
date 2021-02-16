@@ -10,24 +10,22 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <section class="site-section">
+    <div class="container" style="margin-top: 20px">
         <div class="container">
             <div class="row mb-5 justify-content-center">
                 <div class="col-md-7 text-center">
                     <h2>Найдено {{ job_qs }} вакансий</h2>
 
                     {% if request.user.profile.role == 'employer' %}
-                        <div class="mb-5 text-center">
-                            <a href="{% url 'job_post' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block">
-                                <span class="mr-2 icon-paper-plane"></span>Создать вакансию
+                        <div class="text-center">
+                            <a href="{% url 'job_post' %}" class="btn btn-primary">
+                                Создать вакансию
                             </a>
                         </div>
                     {% endif %}
 
                 </div>
             </div>
-            <div class="mb-5">
                 {% for q in query %}
                     <div class="row align-items-start job-item border-bottom pb-3 mb-3 pt-3">
                         <div class="col-md-4">
@@ -45,10 +43,9 @@
                         </div>
                     </div>
                 {% endfor %}
-            </div>
         </div>
 
-            <div class="row pagination-wrap">
+            <div class="row pagination-wrap" style="margin-bottom: 20px">
                 <div class="col-md-6 text-center text-md-left">
                     <div class="custom-pagination ml-auto">
                         {% if query.has_previous %}
@@ -64,6 +61,5 @@
                 </div>
             </div>
 
-        </section>
     </div>
 {% endblock %}

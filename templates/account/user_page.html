@@ -12,13 +12,23 @@
     {% if request.user.is_authenticated %}
         Привет, {{ request.user.first_name }} <br>
         {% if request.user.profile.role == 'employer' %}
-            Вы зашли как тот, кто ищет сотрудников
-            <a class="btn btn-primary" style="width: 250px" href="{% url 'job_post' %}" role="button">Создать ваканисию</a>
+            <p>Вы зашли как тот, кто ищет сотрудников</p>
         {% elif request.user.profile.role == 'employee' %}
             Вы зашли как тот, кто ищет работу
         {% endif %}
         <br>
-        <a href="{% url 'password_change' %}">Изменить пароль</a> |
-        <a href="{% url 'password_reset' %}">Восстановить пароль</a>
+
+        <nav>
+            <a class="btn btn-primary" style="width: 250px" href="{% url 'password_change' %}">Изменить пароль</a> |
+            <a class="btn btn-primary" style="width: 250px" href="{% url 'password_reset' %}">Восстановить пароль</a>
+        </nav>
+
+        {% if request.user.profile.role == 'employer' %}
+            <div style="margin-top: 5px">
+                <nav>
+                    <a href="{% url 'job_post' %}" class="btn btn-primary" style="width: 250px">Создать вакансию</a>
+                </nav>
+        {% endif %}
+
     {% endif %}
 {% endblock %}
