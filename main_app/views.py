@@ -45,7 +45,7 @@ def job_listing(request):
     query = JobModel.objects.all().count()
 
     qs = JobModel.objects.all().order_by('-published_on')
-    paginator = Paginator(qs, 3)  # Show 3 jobs per page
+    paginator = Paginator(qs, 5)  # Show 3 jobs per page
     page = request.GET.get('page')
     try:
         qs = paginator.page(page)

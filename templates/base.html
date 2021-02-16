@@ -3,13 +3,15 @@
 <html lang="en">
 <head>
 <style>
-    h1 {
+    #h1menu {
         background-color: lightgrey;
         border: double;
+        height: 50px;
     }
-    h2 {
+    #h2menu {
         background-color: lightgrey;
         border: double;
+        height: 44px;
     }
     #alert {
         margin-left: 5px;
@@ -28,13 +30,12 @@
 </head>
 <body>
     <div id="alert">
-        <h1>JOBS!</h1>
+        <h1 id="h1menu">JOBS!</h1>
         <div style="display: flex; justify-content: space-around">
             <div>
                 <nav>
                     <a class="btn btn-primary" style="width: 250px" href="{% url 'index' %}" role="button">Меню</a> |
                     <a class="btn btn-primary" style="width: 250px" href="{% url 'contacts' %}"> Контакты</a>
-
                 </nav>
             </div>
             <div>
@@ -50,7 +51,7 @@
             </div>
             </div>
 
-            <div style="margin-top: 8px">
+            <div style="margin-top: 8px" id="h2menu">
                 {% block page_title %}
                     <h2>Главная</h2>
                 {% endblock %}

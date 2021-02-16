@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block page_title %}
-    <h2>Вакансии</h2>
+    <h2>Все вакансии</h2>
 {% endblock %}
 
 {% block content %}
@@ -15,12 +15,16 @@
         <div class="container">
             <div class="row mb-5 justify-content-center">
                 <div class="col-md-7 text-center">
-                    <h2 class="section-title mb-2">{{ job_qs }} Job Listed</h2>
-                    <div class="mb-5 text-center">
-                        <a href="{% url 'job_post' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block">
-                            <span class="mr-2 icon-paper-plane"></span>Post a Job
-                        </a>
-                    </div>
+                    <h2>Найдено {{ job_qs }} вакансий</h2>
+
+                    {% if request.user.profile.role == 'employer' %}
+                        <div class="mb-5 text-center">
+                            <a href="{% url 'job_post' %}" class="btn btn-primary border-width-2 d-none d-lg-inline-block">
+                                <span class="mr-2 icon-paper-plane"></span>Создать вакансию
+                            </a>
+                        </div>
+                    {% endif %}
+
                 </div>
             </div>
             <div class="mb-5">
@@ -31,33 +35,35 @@
                                 {{ q.employment_status }}
                             </span>
                             <h2><a href="{% url 'job_single' q.id %}">{{ q.title }}</a></h2>
-                            <p>In: <strong>{{ q.category }}</strong></p>
                         </div>
                         <div class="col-md-3 text-left">
-                            <h3>{{ q.job_location }}</h3>
+                            <h3>Местоположение: {{ q.job_location }}</h3>
                             <span class="meta"></span>
                         </div>
                         <div class="col-md-3 text-md-right">
-                            <strong class="text-black">{{ q.Salary }}</strong>
+                            <h2>{{ q.salary }}&dollar;</h2>
                         </div>
                     </div>
                 {% endfor %}
             </div>
+        </div>
+
             <div class="row pagination-wrap">
                 <div class="col-md-6 text-center text-md-left">
                     <div class="custom-pagination ml-auto">
                         {% if query.has_previous %}
-                            <a href="?page={{ query.previous_page_number }}" class="prev">Previous</a>
+                            <a href="?page={{ query.previous_page_number }}" class="prev">Предыдущая</a>
                         {% endif %}
                         <div class="d-inline-block">
-                            Page <a href="#" class="active">{{ query.number }}</a> of {{ query.paginator.num_pages }}
+                            Страница <a href="#" class="active">{{ query.number }}</a> из {{ query.paginator.num_pages }}
                         </div>
                         {% if query.has_next %}
-                            <a href="?page={{ query.next_page_number }}" class="next">Next</a>
+                            <a href="?page={{ query.next_page_number }}" class="next">Следующая</a>
                         {% endif %}
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+
+        </section>
+    </div>
 {% endblock %}
