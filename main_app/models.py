@@ -28,7 +28,7 @@ class JobModel(models.Model):
     experience = models.CharField(max_length=100)
     job_location = models.CharField(max_length=120)
     salary = models.CharField(max_length=100, null=True, blank=True)
-    published_on = models.DateTimeField(default=timezone.now)
+    published_on = models.DateTimeField(default=timezone.now, blank=False)
 
     def __str__(self):
         return self.title
