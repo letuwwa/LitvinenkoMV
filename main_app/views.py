@@ -14,7 +14,7 @@ from .forms import (
 )
 from django.views.generic import (
     CreateView,
-    UpdateView,
+    UpdateView, DeleteView,
 )
 
 
@@ -81,3 +81,9 @@ class JobUpdate(UpdateView):
     template_name = 'jobs/job_post.html'
     model = JobModel
     form_class = JobModelForm
+
+
+class JobDelete(DeleteView):
+    model = JobModel
+    success_url = reverse_lazy('job_listing')
+    template_name = 'jobs/confirm_delete.html'

@@ -24,6 +24,9 @@
             <a href="{% url 'job_update' q.id %}">
                 Изменить
             </a>
+            <a href="{% url 'job_delete' q.id %}">
+                Удалить
+            </a>
         </div>
     {% endif %}
 {% endblock %}
