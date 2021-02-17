@@ -86,4 +86,4 @@ class JobUpdate(UpdateView):
 class JobDelete(DeleteView):
     model = JobModel
     success_url = reverse_lazy('job_listing')
-    template_name = 'jobs/confirm_delete.html'
+    template_name = 'jobs/confirm_job_delete.html'
