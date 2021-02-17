@@ -2,6 +2,8 @@ from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
+from django_currentuser.db.models import CurrentUserField
+from django_currentuser.middleware import get_current_authenticated_user
 
 
 class Feedback(models.Model):
@@ -19,7 +21,7 @@ JOB_TYPE = (
 
 
 class JobModel(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, editable=False, blank=True)
+    user = CurrentUserField(default=get_current_authenticated_user, blank=False, editable=False)
     title = models.CharField(max_length=100, blank=False)
     company_name = models.CharField(max_length=200, blank=False)
     employment_status = models.CharField(choices=JOB_TYPE, max_length=10)

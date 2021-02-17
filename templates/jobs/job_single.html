@@ -19,4 +19,11 @@
     {{ q.job_location }}
     {{ q.salary }}
     {{ q.published_on }}
+    {% if request.user == q.user %}
+        <div class="col-lg-4">
+            <a href="{% url 'job_update' q.id %}">
+                Изменить
+            </a>
+        </div>
+    {% endif %}
 {% endblock %}

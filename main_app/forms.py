@@ -16,3 +16,9 @@ class JobListingForm(forms.ModelForm):
             "job_location": "Job Location",
             "published_on": "Publish Date"
         }
+
+
+class JobModelForm(forms.ModelForm):
+    class Meta:
+        model = JobModel
+        fields = '__all__'
