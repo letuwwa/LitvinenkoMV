@@ -19,18 +19,16 @@
                         <form action="" method="POST" class="">
                             {% csrf_token %}
                             {{ form|crispy }}
-                            {% if form.instance.id %}
                                 <div class="row form-group">
                                     <div class="col-md-12">
                                         {% if form.instance.id %}
                                                 <input type="submit" value="Обновить" class="btn btn-primary btn-md text-white" style="width: 200px">
+                                                <a class="btn btn-primary" style="width: 200px" href="{% url 'job_single' object.id %}">Отмена</a>
                                         {% else %}
                                                 <input type="submit" value="Создать" class="btn btn-primary btn-md text-white" style="width: 200px">
                                         {% endif %}
-                                        <a class="btn btn-primary" style="width: 200px" href="{% url 'job_single' object.id %}">Отмена</a>
                                     </div>
                                 </div>
-                            {% endif %}
                         </form>
                     </div>
                 </div>

@@ -26,8 +26,10 @@
         {% if request.user.profile.role == 'employer' %}
             <div style="margin-top: 5px">
                 <nav>
-                    <a href="{% url 'job_post' %}" class="btn btn-primary" style="width: 250px">Создать вакансию</a>
+                    <a href="{% url 'job_post' %}" class="btn btn-primary" style="width: 250px">Создать вакансию</a> |
+                    <a href="{% url 'my_jobs_list' %}" class="btn btn-primary" style="width: 250px">Мои вакансии</a>
                 </nav>
+            </div>
         {% endif %}
 
     {% endif %}
