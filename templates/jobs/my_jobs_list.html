@@ -11,7 +11,6 @@
 
 {% block content %}
     {% if request.user.profile.role == 'employer' %}
-        {% if jobs_list %}
             {% for job in jobs_list %}
               {% if job.user == request.user %}
                 <div class="card col-lg-4" style="width: 25rem;">
@@ -24,10 +23,9 @@
                   </div>
                 </div>
               {% endif %}
+                {% empty %}
+                Вы не создавали вакансии ранее...
             {% endfor %}
-        {% else %}
-            Вы не публиковали вакансии...
-        {% endif %}
     {% else %}
         <a>Вы не зарегестрированны как работадатель, доступ ограничен...</a>
     {% endif %}

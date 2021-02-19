@@ -49,15 +49,21 @@
                     {% endif %}
                 </nav>
             </div>
-            </div>
-
+        </div>
             <div style="margin-top: 8px" id="h2menu">
                 {% block page_title %}
                     <h2>Главная</h2>
                 {% endblock %}
             </div>
-
             {% block content %}
+                <div>
+                    <strong>{{ user_qs }}</strong>
+                </div>
+                <span>Candidates</span>
+                <div>
+                    <strong>{{ job_qs }}</strong>
+                </div>
+                <span> Jobs Posted</span>
                 <a class="btn btn-primary" style="width: 250px" href="{% url 'job_listing' %}" role="button">Вакансии</a>
             {% endblock %}
         </div>

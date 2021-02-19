@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -19,7 +20,15 @@ from django.views.generic import (
 
 
 def index(request):
-    return render(request, 'base.html', context={})
+    jobs = JobModel.objects.all().count()
+    users = User.objects.all().count()
+
+    context = {
+        'job_qs': jobs,
+        'user_qs': users
+    }
+
+    return render(request, 'base.html', context=context)
 
 
 def feedback_response(request):
@@ -89,7 +98,9 @@ class JobDelete(DeleteView):
     template_name = 'jobs/confirm_job_delete.html'
 
 
-class JobListView(ListView):
-    template_name = 'jobs/my_jobs_list.html'
-    model = JobModel
-    context_object_name = 'jobs_list'
+def my_jobs_list(request):
+    jobs = JobModel.objects.all().filter(user=request.user.id)
+    context = {
+        'jobs_list': jobs,
+    }
+    return render(request, 'jobs/my_jobs_list.html', context=context)
