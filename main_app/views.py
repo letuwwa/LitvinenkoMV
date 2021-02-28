@@ -135,13 +135,13 @@ class JobDelete(DeleteView):
 
 class ResponseUpdateByEmployee(UpdateView):
     template_name = 'jobs/apply_job.html'
-    model = JobModel
+    model = JobApplyModel
     form_class = ApplyEmployeeForm
 
 
 class ResponseUpdateByEmployer(UpdateView):
     template_name = 'jobs/apply_job.html'
-    model = JobModel
+    model = JobApplyModel
     form_class = ApplyEmployerForm
 
 

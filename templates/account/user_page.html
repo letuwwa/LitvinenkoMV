@@ -30,7 +30,13 @@
                     <a href="{% url 'my_jobs_list' %}" class="btn btn-primary" style="width: 250px">Мои вакансии</a>
                 </nav>
             </div>
+        {% elif request.user.profile.role == 'employee' %}
+            <div style="margin-top: 5px">
+                <nav>
+                    <a href="{% url 'my_responses_list' %}" class="btn btn-primary" style="width: 250px">Мои отклики</a> |
+                    <a href="#" class="btn btn-primary" style="width: 250px">Заглушка</a>
+                </nav>
+            </div>
         {% endif %}
-
     {% endif %}
 {% endblock %}

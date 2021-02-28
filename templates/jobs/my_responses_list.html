@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block page_title %}
-    <h2>Мои вакансии</h2>
+    <h2>Мои отклики</h2>
 {% endblock %}
 
 {% block content %}
@@ -26,6 +26,13 @@
                 {% empty %}
                 Вы не откликались на вакансии ранее...
             {% endfor %}
+        <nav>
+            <div class="col-lg-4">
+                <a href="{% url 'user_page' %}">
+                    Назад
+                </a>
+            </div>
+        </nav>
     {% else %}
         <a>Вы не зарегестрированны как соискатель, доступ ограничен...</a>
     {% endif %}

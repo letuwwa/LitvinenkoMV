@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block page_title %}
-    <h2>{{ q.title }}</h2>
+    <h2>{{ q }}</h2>
 {% endblock %}
 
 {% block content %}
@@ -17,6 +17,7 @@
     {{ q.apply_response}}
     {{ q.apply_published_date}}
 
+    <nav>
     {% if request.user == q.user %}
         <div class="col-lg-4">
             <a href="{% url 'response_update' q.id %}">
@@ -30,4 +31,5 @@
             </a>
         </div>
     {% endif %}
+    </nav>
 {% endblock %}
