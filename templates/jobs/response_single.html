@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Job</title>
+{% endblock %}
+
+{% block page_title %}
+    <h2>{{ q.title }}</h2>
+{% endblock %}
+
+{% block content %}
+    {{ q.user }}
+    {{ q.job }}
+    {{ q.status}}
+    {{ q.apply_request}}
+    {{ q.apply_response}}
+    {{ q.apply_published_date}}
+
+    {% if request.user == q.user %}
+        <div class="col-lg-4">
+            <a href="{% url 'response_update' q.id %}">
+                Изменить
+            </a>
+            <a href="{% url 'response_delete' q.id %}">
+                Удалить
+            </a>
+            <a href="{% url 'job_single' q.job.id %}">
+                Вакансия
+            </a>
+        </div>
+    {% endif %}
+{% endblock %}

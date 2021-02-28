@@ -37,3 +37,28 @@ class JobModel(models.Model):
 
     def get_absolute_url(self):
         return reverse("job_single", args=[self.id])
+
+
+APPLY_STATUS = (
+    ('Отправлен', 'Отправлен'),
+    ('Отказ', 'Отказ'),
+    ('Вас пригласили', 'Вас пригласили'),
+)
+
+
+class JobApplyModel(models.Model):
+    user = CurrentUserField(default=get_current_authenticated_user, blank=False, editable=False, verbose_name='Пользователь', null=True)
+    job = models.ForeignKey('JobModel', on_delete=models.CASCADE, blank=False, verbose_name='Вакансия')
+    status = models.CharField(max_length=32, choices=APPLY_STATUS, default='Отправлен')
+    apply_request = models.TextField()
+    apply_response = models.TextField()
+    apply_published_date = models.DateTimeField(default=timezone.now, blank=False)
+
+    def __str__(self):
+        return 'Отклик на ' + self.job.title
+
+    def get_absolute_url(self):
+        return reverse('', args=[self.id])
+
+    class Meta:
+        ordering = ["-apply_published_date"]

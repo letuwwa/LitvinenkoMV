@@ -19,6 +19,7 @@
     {{ q.job_location }}
     {{ q.salary }}
     {{ q.published_on }}
+
     {% if request.user == q.user %}
         <div class="col-lg-4">
             <a href="{% url 'job_update' q.id %}">
@@ -26,6 +27,13 @@
             </a>
             <a href="{% url 'job_delete' q.id %}">
                 Удалить
+            </a>
+        </div>
+    {% endif %}
+    {% if request.user.profile.role == 'employee' %}
+        <div class="col-lg-4">
+            <a href="{% url 'apply_job' q.id %}">
+                Откликнуться
             </a>
         </div>
     {% endif %}

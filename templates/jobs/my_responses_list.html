@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>My Jobs</title>
+{% endblock %}
+
+{% block page_title %}
+    <h2>Мои вакансии</h2>
+{% endblock %}
+
+{% block content %}
+    {% if request.user.profile.role == 'employee' %}
+            {% for response in responses_list %}
+              {% if response.user == request.user %}
+                <div class="card col-lg-4" style="width: 25rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">
+                      <a href="{% url 'response_single' response.id %}">
+                        Отклик на {{ response.job }}
+                      </a>
+                    </h5>
+                  </div>
+                </div>
+              {% endif %}
+                {% empty %}
+                Вы не откликались на вакансии ранее...
+            {% endfor %}
+    {% else %}
+        <a>Вы не зарегестрированны как соискатель, доступ ограничен...</a>
+    {% endif %}
+{% endblock %}

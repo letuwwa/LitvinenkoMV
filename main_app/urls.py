@@ -10,6 +10,12 @@ urlpatterns = [
     path('job_delete/<int:pk>/', views.JobDelete.as_view(), name='job_delete'),
     path('my_jobs_list/', views.my_jobs_list, name='my_jobs_list'),
 
+    path('apply_job/<int:pk>/', views.apply_job, name='apply_job'),
+    path('response_single/<int:id>/', views.response_single, name='response_single'),
+    path('response_update/<int:pk>/', views.ResponseUpdateByEmployee.as_view(), name='response_update'),
+    path('response_delete/<int:pk>/', views.ResponseDelete.as_view(), name='response_delete'),
+    path('my_responses_list/', views.my_responses_list, name='my_responses_list'),
+
     path('contacts/', views.FeedbackCreate.as_view(), name='contacts'),
     path('contacts_r/', views.feedback_response, name='contacts_r'),
     path('', views.index, name='index'),

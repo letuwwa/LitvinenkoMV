@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <style>
+    .center {
+        margin-top: 20px;
+        text-align: center;
+    }
+    </style>
+    <title>Delete</title>
+{% endblock %}
+
+{% block page_title %}
+    <h2>Удаление отклика</h2>
+{% endblock %}
+
+{% block content %}
+    <div class="center">
+        <form method="post" >
+          {% csrf_token %}
+            <p>Вы действительно хотите удалить "{{ object }}"?</p>
+            <input class="btn btn-primary" style="width: 200px" type="submit" value="Ок" />
+            <a class="btn btn-primary" style="width: 200px" href="{% url 'job_single' object.id %}">Отмена</a>
+        </form>
+  </div>
+{% endblock %}

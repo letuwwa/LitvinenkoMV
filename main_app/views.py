@@ -6,16 +6,20 @@ from django.urls import reverse_lazy
 
 from .models import (
     Feedback,
-    JobModel
+    JobModel,
+    JobApplyModel,
 )
 from .forms import (
     FeedbackForm,
     JobListingForm,
-    JobModelForm
+    JobModelForm,
+    ApplyEmployeeForm,
+    ApplyEmployerForm,
 )
 from django.views.generic import (
     CreateView,
-    UpdateView, DeleteView, ListView,
+    UpdateView,
+    DeleteView,
 )
 
 
@@ -52,6 +56,14 @@ def job_single(request, id):
     return render(request, "jobs/job_single.html", context)
 
 
+def response_single(request, id):
+    response_query = get_object_or_404(JobApplyModel, id=id)
+    context = {
+        'q': response_query,
+    }
+    return render(request, "jobs/response_single.html", context)
+
+
 @login_required
 def job_listing(request):
     query = JobModel.objects.all().count()
@@ -86,6 +98,29 @@ def job_post(request):
     return render(request, "jobs/job_post.html", context)
 
 
+@login_required
+def apply_job(request, pk):
+    job_query = get_object_or_404(JobModel, id=pk)
+    form = ApplyEmployeeForm(request.POST or None)
+    form.initial = {'job': job_query}
+    if form.is_valid():
+        instance = form.save()
+        instance.save()
+        return redirect('/my_responses_list/')
+    context = {
+        'form': form
+    }
+    return render(request, 'jobs/apply_job.html', context)
+
+
+def my_responses_list(request):
+    responses = JobApplyModel.objects.all().filter(user=request.user.id)
+    context = {
+        'responses_list': responses,
+    }
+    return render(request, 'jobs/my_responses_list.html', context=context)
+
+
 class JobUpdate(UpdateView):
     template_name = 'jobs/job_post.html'
     model = JobModel
@@ -96,6 +131,24 @@ class JobDelete(DeleteView):
     model = JobModel
     success_url = reverse_lazy('job_listing')
     template_name = 'jobs/confirm_job_delete.html'
+
+
+class ResponseUpdateByEmployee(UpdateView):
+    template_name = 'jobs/apply_job.html'
+    model = JobModel
+    form_class = ApplyEmployeeForm
+
+
+class ResponseUpdateByEmployer(UpdateView):
+    template_name = 'jobs/apply_job.html'
+    model = JobModel
+    form_class = ApplyEmployerForm
+
+
+class ResponseDelete(DeleteView):
+    model = JobApplyModel
+    success_url = reverse_lazy('my_responses_list')
+    template_name = 'jobs/confirm_response_delete.html'
 
 
 def my_jobs_list(request):
