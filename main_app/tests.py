@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from .models import JobModel
 
@@ -8,6 +9,10 @@ class AuthorModelTest(TestCase):
     def setUpTestData(cls):
         JobModel.objects.create(title='JobTitle', company_name='CompanyName', description='temp',
                                 responsibilities='temp', experience='temp', job_location='temp')
+
+    def test_instance(self):
+        job = JobModel(title='test', company_name='test')
+        self.assertTrue(isinstance(job, JobModel))
 
     def test_title_and_label(self):
         job = JobModel.objects.get(id=1)
@@ -32,3 +37,13 @@ class AuthorModelTest(TestCase):
     def test_get_absolute_url(self):
         job = JobModel.objects.get(id=1)
         self.assertEquals(job.get_absolute_url(), '/job_single/1/')
+
+    def test_user_creation(self):
+        user = get_user_model().objects.create_user(username='test',
+                                                    password='user123U',
+                                                    email='testing@example.com')
+        user.save()
+        job = JobModel.objects.create(user=user, title='JobTitle',
+                                      company_name='CompanyName',
+                                      description='temp')
+        self.assertEqual(job.user, user)
