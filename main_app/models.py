@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -21,7 +20,7 @@ JOB_TYPE = (
 
 
 class JobModel(models.Model):
-    user = CurrentUserField(default=get_current_authenticated_user, blank=False, editable=False)
+    user = CurrentUserField(default=get_current_authenticated_user, blank=True, editable=False)
     title = models.CharField(max_length=100, blank=False, verbose_name='Название вакансии')
     company_name = models.CharField(max_length=200, blank=False, verbose_name='Название компании')
     employment_status = models.CharField(choices=JOB_TYPE, max_length=10, verbose_name='Занятость')
